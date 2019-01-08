@@ -1,11 +1,11 @@
 import './App.css';
 import React, {Component} from 'react';
 import {Route} from 'react-router-dom'
-import * as BooksAPI from '../utils/BooksAPI'
-import * as ArrayUtils from '../utils/ArraysUtils'
 import Home from './Home';
 import Search from './Search';
 import Detail from './Detail';
+import * as BooksAPI from '../utils/BooksAPI'
+import * as ArrayUtils from '../utils/ArraysUtils'
 
 class App extends Component {
 

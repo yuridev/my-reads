@@ -1,7 +1,7 @@
 import React from 'react';
-import HomeMenu from '../components/menu/HomeMenu';
 import {Container} from 'semantic-ui-react';
 import BooksFeed from '../components/BooksFeed';
+import HomeMenu from '../components/menu/HomeMenu';
 
 
 const Home = ({booksByShelf, shelves, onChange}) => (
