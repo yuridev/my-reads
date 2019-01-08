@@ -1,0 +1,123 @@
+:root {
+    --primary-color: #577848;
+    --background-color:#d1d1d1;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html, body, .root {
+    height: 100%;
+    background: var(--background-color)
+}
+
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 80px;
+}
+
+.App-header {
+    background-color: #222;
+    height: 150px;
+    padding: 20px;
+    color: white;
+}
+
+.App-title {
+    font-size: 1.5em;
+    color: white;
+    margin: 8px;
+}
+
+.ui.App-bar.menu {
+    background: var(--primary-color)
+}
+
+.App-intro {
+    font-size: large;
+}
+
+.ui.button.button-search {
+    background: var(--primary-color)
+}
+
+.ui.button:active.button-search {
+    background: var(--primary-color)
+}
+
+.ui.button.button-search {
+    color: white;
+}
+
+.ui.button.button-search i {
+    color: white;
+    margin-left: 8px;
+}
+
+.books-list {
+    margin-top: 32px;
+}
+
+.shelf-title {
+    font-size: 1.5em;
+    text-align: left;
+}
+
+.ui.image.book-image img {
+    height: 240px;
+    width: 180px;
+}
+
+.book {
+    position: relative;
+    margin: 8px 18px 8px 18px;
+}
+
+.header.book-title {
+    width: 140px;
+    word-break: break-word;
+    text-overflow: ellipsis;
+    margin-top: 8px !important;
+}
+
+.description.book-authors {
+    width: 140px;
+    word-break: break-word;
+    text-overflow: ellipsis;
+    margin-top: 8px;
+}
+
+.book-edit {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+}
+
+.ui.button.change-shelf-menu {
+    width: 160px;
+    background: white;
+    text-align: left;
+}
+
+.list.change-shelf-menu {
+    position: absolute;
+    box-shadow: 1px 1px 12px #bdbdbd;
+    right: 8px;
+    top: 8px;
+    background: white;
+}
+
+.shelf-menu-title {
+    color: #757575;
+    text-align: left;
+    margin-left:12px;
+}
