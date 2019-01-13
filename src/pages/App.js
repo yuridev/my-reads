@@ -17,13 +17,9 @@ class App extends Component {
 		BooksAPI.update(bookToChange, shelf).then((books) => {
 
 			this.setState(state => {
-				if(state.books) {
-                    let index = this.state.books.findIndex(book => book.id === bookToChange.id);
-                    state.books[index].shelf = shelf;
-                    return {books: state.books};
-                }
-
-                return {...books}
+				let index = this.state.books.findIndex(book => book.id === bookToChange.id);
+				state.books[index].shelf = shelf;
+				return {books: state.books};
             })
 
 		});

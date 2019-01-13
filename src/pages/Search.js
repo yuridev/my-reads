@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Container} from 'semantic-ui-react';
 import BooksList from '../components/BooksList';
 import SearchMenu from '../components/menu/SearchMenu';
+import * as BooksAPI from '../utils/BooksAPI'
 
 class Search extends Component{
 
@@ -13,9 +14,22 @@ class Search extends Component{
 		this.setState({searchResults});
 	};
 
+	onChange = (bookToChange, shelf) => {
+
+        BooksAPI.update(bookToChange, shelf).then(() => {
+
+            this.setState(state => {
+            	return {searchResults: state.searchResults.filter((book) => book.id !== bookToChange.id)}
+            })
+
+        });
+
+
+    }
+
 	render(){
-		const {books, shelves, onChange} = this.props;
-		const {onUserSearch} = this;
+		const {books, shelves} = this.props;
+		const {onUserSearch, onChange} = this;
 		const results = this.state.searchResults;
 
 		return (
