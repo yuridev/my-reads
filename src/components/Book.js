@@ -59,9 +59,15 @@ class Book extends Component {
 				<Item>
 					<Item.Content>
 						<Link to={'/book/' + book.id}>
-							<Item.Image rounded
+							{book.imageLinks && <Item.Image
 										className='book-image' size='small'
-										src={book.imageLinks.smallThumbnail}/>
+										src={book.imageLinks.smallThumbnail}
+							/>}
+
+                            {!book.imageLinks && <Item.Image
+								className='book-image' size='small'
+								src='../No_Image_Available.png'
+							/>}
 						</Link>
 
 						<Button className='book-edit' circular icon='edit' onClick={this.onClickOptions}/>
@@ -72,7 +78,7 @@ class Book extends Component {
 						</div>
 						<Item.Header className='book-title'>{book.title}</Item.Header>
 						<Item.Description className='book-authors'>
-							{book.authors.map(author => {
+							{book.authors && book.authors.map(author => {
 								return author
 							})}
 						</Item.Description>

@@ -21,13 +21,15 @@ class Detail extends Component {
 			items.push(
 				{
 					childKey: 0,
-					image: book.imageLinks.thumbnail,
+					image: book.imageLinks ? book.imageLinks.thumbnail : '../No_Image_Available.png',
 					header: book.title,
 					description: book.description,
 					meta: book.authors.map(author => {return author+', '}),
 					extra: <a href={book.previewLink}><Button>More</Button></a>,
 				})
 		}
+
+		console.log(items)
 
 		return (
 			<div>

@@ -16,7 +16,7 @@ class Search extends Component{
 	render(){
 		const {books, shelves, onChange} = this.props;
 		const {onUserSearch} = this;
-		const results = this.state.searchResults.length > 0 ? this.state.searchResults : books;
+		const results = this.state.searchResults;
 
 		return (
 			<div className="App">

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import {Search} from 'semantic-ui-react'
-import escapeRegExp from 'escape-string-regexp'
+import *  as BooksAPI from '../../utils/BooksAPI'
+import { Debounce } from 'react-throttle';
 
 class SearchBooks extends Component {
 
@@ -10,54 +10,36 @@ class SearchBooks extends Component {
 
 	resetComponent = () => this.setState({isLoading: false, results: [], value: ''});
 
-	handleResultSelect = (e, {result}) => {
-		this.setState({value: result.title});
-		this.props.onUserSearch(this.state.filteredBooks);
-	};
+	handleSearchChange = (e) => {
 
-	handleSearchChange = (e, {value}) => {
-		const {books, onUserSearch }= this.props;
+		const { onUserSearch } = this.props;
 
-		this.setState({isLoading: true, value});
+        this.setState({isLoading: true, value: e.target.value});
 
-		setTimeout(() => {
-			if (this.state.value.length < 1) return this.resetComponent();
+        BooksAPI.search(e.target.value).then((data) => {
 
-			const match = new RegExp(escapeRegExp(this.state.value), 'i');
+            const results = data && data.length ? data.map(book => {
+                return {
+					id: book.id,
+                    image: book.imageLinks ? book.imageLinks.smallThumbnail : 'https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjSi5unz-vfAhUGfZAKHXgwB38QjRx6BAgBEAU&url=http%3A%2F%2Fsimpsons.wikia.com%2Fwiki%2FFile%3ANo_Image_Available.png&psig=AOvVaw2GBZQbUSrscB2R44mqv1bJ&ust=1547498503231114',
+                    title: book.title,
+                    description: book.authors ? book.authors[0] : 'Unknown'
+                }
+            }) : [];
 
-			const filteredBooks = books.filter(book => match.test(book.title));
+            onUserSearch(results);
 
-			const results = filteredBooks.map(book => {
-				return {
-					image: book.imageLinks.smallThumbnail,
-					title: book.title,
-					description: book.authors[0]
-				}
-			});
+        });
 
-			this.setState({
-				isLoading: false,
-				results: results,
-				filteredBooks: filteredBooks
-			});
-
-			onUserSearch(filteredBooks);
-		}, 300)
 	};
 
 	render() {
-		const {isLoading, value, results} = this.state;
-		return (
-			<Search
-				aligned='left'
-				loading={isLoading}
-				onResultSelect={this.handleResultSelect}
-				onSearchChange={this.handleSearchChange}
-				results={results}
-				value={value}
 
-				{... this.books}
-			/>
+		return (
+
+			<Debounce time="500" handler="onChange">
+				<input onChange={this.handleSearchChange} />
+			</Debounce>
 		);
 
 	}

@@ -22,10 +22,10 @@ class BooksList extends Component {
 					</div>
 				)}
 
-				<List floated='left' horizontal={true} animated={true}
+				{ books && books.length ? <List floated='left' horizontal={true} animated={true}
 					  items={books.map(book => {
 						  return {key: book.id, content: (<Book onChange={onChange} shelves={shelves} data={book}/>)}
-					  })}/>
+					  })}/> : 'No books found'}
 			</div>)
 	}
 }
